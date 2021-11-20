@@ -1,14 +1,9 @@
 package com.example;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.KafkaContainer;
-import org.testcontainers.lifecycle.Startables;
 import org.testcontainers.utility.DockerImageName;
 
 class HelloTest {
@@ -23,7 +18,4 @@ class HelloTest {
             logger.info(kafka.getBootstrapServers());
         }
     }
-
-
-
 }
