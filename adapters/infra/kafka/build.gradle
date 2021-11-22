@@ -1,12 +1,14 @@
 plugins {
-    id 'application'
+    id 'java'
 }
 
-application {
-    mainClass = 'com.example.Hello'
-}
+apply plugin: 'idea'
 
 dependencies {
+    implementation (libs.kafka.streams)
+    implementation (libs.slf4j.api)
+    implementation (libs.slf4j.simple)
+
     testImplementation (libs.junit.jupiter)
     testImplementation (libs.assertj.core)
     testImplementation (libs.testcontainers.core)
@@ -21,4 +23,10 @@ test {
 
 repositories {
     mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
 }

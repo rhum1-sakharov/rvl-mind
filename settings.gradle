@@ -12,7 +12,8 @@ dependencyResolutionManagement {
             version('junit-jupiter', '5.7.0')
             version('assertj-core', '3.21.0')
             version('testcontainers','1.16.2')
-            version('slf4j','1.6.1')
+            version('slf4j','1.7.25')
+            version('kafka-streams','2.6.0')
 
             alias('junit-jupiter').to('org.junit.jupiter', 'junit-jupiter').versionRef('junit-jupiter')
             alias('assertj-core').to('org.assertj', 'assertj-core').versionRef('assertj-core')
@@ -20,6 +21,7 @@ dependencyResolutionManagement {
             alias('testcontainers-kafka').to('org.testcontainers','kafka').versionRef('testcontainers')
             alias('slf4j-api').to('org.slf4j','slf4j-api').versionRef('slf4j')
             alias('slf4j-simple').to('org.slf4j','slf4j-simple').versionRef('slf4j')
+            alias ('kafka-streams').to('org.apache.kafka','kafka-streams').versionRef('kafka-streams')
         }
     }
 }
