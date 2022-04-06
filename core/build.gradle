@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+apply plugin: 'idea'
+
+dependencies {
+    testImplementation (libs.junit.jupiter)
+    testImplementation (libs.assertj.core)
+    testImplementation (libs.slf4j.api)
+    testImplementation (libs.slf4j.simple)
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
