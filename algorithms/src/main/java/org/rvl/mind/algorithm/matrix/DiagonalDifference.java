@@ -63,7 +63,7 @@ import java.util.List;
  */
 public class DiagonalDifference {
 
-  public static int diagonalDifference(List<List<Integer>> arr) {
+  public int compute(List<List<Integer>> arr) {
     // Write your code here
     int dimension = arr.get(0).size();
 
