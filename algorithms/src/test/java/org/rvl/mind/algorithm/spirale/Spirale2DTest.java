@@ -79,8 +79,7 @@ class Spirale2DTest {
         { 20, 37, 36, 35 ,34,33,12},
         { 19, 18, 17, 16 ,15,14,13},
     };
-    // formatter onÒ
+    // formatter on
     assertThat(spirale).isEqualTo(expectedSpirale);
   }
-
 }
