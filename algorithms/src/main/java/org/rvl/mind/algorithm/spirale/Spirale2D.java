@@ -11,8 +11,8 @@ public class Spirale2D {
   public int[][] greedyBuild() {
     int[][] m = new int[n][n];
 
-    int[] dirCol = new int[] { 1, 0, -1, 0 };
     int[] dirRow = new int[] { 0, 1, 0, -1 };
+    int[] dirCol = new int[] { 1, 0, -1, 0 };
 
     int dir = 0, val = 0, row = 0, col = 0, limit = n * n;
     while (val++ < limit) {
@@ -26,12 +26,13 @@ public class Spirale2D {
         row += dirRow[dir];
         col += dirCol[dir];
       }
+
     }
     return m;
   }
 
   private boolean isInvalid(int[][] m, int row, int col) {
-    return row < 0 || col < 0 || row >= n || col >= n || m[row][col] != 0;
+    return row < 0 || col < 0 || row >= n || col >= n || m[row][col] !=0;
   }
 
   public int[][] build() {
