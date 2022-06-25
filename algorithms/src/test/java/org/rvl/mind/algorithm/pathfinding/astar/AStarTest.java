@@ -21,44 +21,44 @@ class AStarTest {
   private static final int Y_END = 7;
   private AStar aStar;
 
-//  @BeforeEach
-//  void setUp() {
-//
-//    String[][] matrix = new String[rows][cols];
-//    matrix[X_START][Y_START] = START;
-//    matrix[X_END][Y_END] = END;
-//
-//    for (int i = 0; i < rows; i++) {
-//      for (int j = 0; j < cols; j++) {
-//        if ((i == X_START && j == Y_START) || (i == X_END && j == Y_END)) {
-//          continue;
-//        }
-//        if (i > 2 && i < 10 && j >= 8 && j <= 10) {
-//          matrix[i][j] = WALL;
-//        } else {
-//          matrix[i][j] = SPACE;
-//        }
-//      }
-//    }
-//
-//    aStar = new AStar(matrix, X_START, Y_START, X_END, Y_END);
-//  }
+  //  @BeforeEach
+  //  void setUp() {
+  //
+  //    String[][] matrix = new String[rows][cols];
+  //    matrix[X_START][Y_START] = START;
+  //    matrix[X_END][Y_END] = END;
+  //
+  //    for (int i = 0; i < rows; i++) {
+  //      for (int j = 0; j < cols; j++) {
+  //        if ((i == X_START && j == Y_START) || (i == X_END && j == Y_END)) {
+  //          continue;
+  //        }
+  //        if (i > 2 && i < 10 && j >= 8 && j <= 10) {
+  //          matrix[i][j] = WALL;
+  //        } else {
+  //          matrix[i][j] = SPACE;
+  //        }
+  //      }
+  //    }
+  //
+  //    aStar = new AStar(matrix, X_START, Y_START, X_END, Y_END);
+  //  }
 
   @Test
   void test() {
 
-    String[][] maze = new String[][]{
-        {".",".",".",".",".",".",".","."},
-        {".",".","#","#","#",".",".","."},
-        {".",".",".",".",".",".",".","."},
-        {".",".","#","#","#",".",".","."},
-        {".","E","#",".",".",".",".","."},
-        {".",".","#",".","S",".",".","."},
-        {".",".","#",".",".",".",".","."},
-        {".",".","#",".",".",".",".","#"},
-        {".",".","#","#","#","#","#","."},
-        {".",".",".",".",".",".",".","."},
-    };
+    String[][] maze = new String[][] {
+      { ".", ".", ".", ".", ".", ".", ".", "." },
+      { ".", ".", "#", "#", "#", ".", ".", "." },
+      { ".", ".", ".", ".", ".", ".", ".", "." },
+      { ".", ".", "#", "#", "#", ".", ".", "." },
+      { ".", "E", "#", ".", ".", ".", ".", "." },
+      { ".", ".", "#", ".", "S", ".", ".", "." },
+      { ".", ".", "#", ".", ".", ".", ".", "." },
+      { ".", ".", "#", ".", ".", ".", ".", "#" },
+      { ".", ".", "#", "#", "#", "#", "#", "." },
+      { ".", ".", ".", ".", ".", ".", ".", "." },
+      };
     aStar = new AStar(maze, 5, 4, 4, 1);
 
     aStar.findPath();
@@ -114,6 +114,47 @@ class AStarTest {
 
     Node poll = priorityQueue.poll();
     System.out.println(poll.getCost());
+  }
+
+  @Test
+  void test2PriorityQueue() {
+    PriorityQueue<Node2> pq = new PriorityQueue();
+    pq.add(new Node2(2, 3));
+    pq.add(new Node2(5, 4));
+    pq.add(new Node2(1, 1));
+
+    System.out.println(pq.poll());
+    System.out.println(pq.poll());
+    System.out.println(pq.poll());
+
+  }
+
+
+  private static class Node2 implements Comparable<Node2> {
+    Node parent;
+    int x, y, g, h;
+
+    public Node2(int g, int h) {
+      this.g = g;
+      this.h = h;
+    }
+
+    int getCost() {
+      return g + h;
+    }
+
+    @Override
+    public int compareTo(Node2 o) {
+      return this.getCost() - o.getCost();
+    }
+
+    @Override
+    public String toString() {
+      return "Node2{" +
+             "g=" + g +
+             ", h=" + h +
+             '}';
+    }
   }
 
   private void printMatrix() {
