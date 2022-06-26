@@ -13,7 +13,7 @@ public class UserProducer {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Properties config = new Properties();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:29092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // acks
@@ -68,7 +68,7 @@ public class UserProducer {
     }
 
     private static ProducerRecord<String, String> dataRecord(String key, String value) {
-        return new ProducerRecord<>("aks.user-data.event", key, value);
+        return new ProducerRecord<>("aks.user-data.snapshot", key, value);
     }
 }
 
