@@ -40,6 +40,27 @@ public class UserProducer {
         producer.send(purchaseRecord("john", "Oranges (3)")).get();
 
         Thread.sleep(10000);
+
+        // we send a user purchase for stephane, but it exists in Kafka later
+        System.out.println("Example 4 - non existing user then user");
+        producer.send(purchaseRecord("stephane", "Computer (4)")).get();
+        producer.send(dataRecord("stephane", String.format("First=%s, Last=%s, Github=%s", "stephane", "marr", "simplesteph"))).get();
+        producer.send(purchaseRecord("stephane", "Books (4)")).get();
+        producer.send(dataRecord("stephane", null)).get(); // delete for cleanup
+
+        Thread.sleep(10000);
+
+        // we create a user, but it gets deleted before any purchase comes through
+        System.out.println("Example 5 - user then delete then data");
+        producer.send(dataRecord("alice", String.format("First=%s", "alice"))).get();
+        producer.send(dataRecord("alice", null)).get();
+        producer.send(purchaseRecord("alice", "Apache Kafka Series (5)")).get();
+
+        Thread.sleep(10000);
+
+        System.out.println("End of demo");
+
+        producer.close();
     }
 
     private static ProducerRecord<String, String> purchaseRecord(String key, String value) {
