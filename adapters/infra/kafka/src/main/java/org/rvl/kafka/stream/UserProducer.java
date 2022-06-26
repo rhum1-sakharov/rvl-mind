@@ -38,6 +38,8 @@ public class UserProducer {
         System.out.println("Example 3 - update user");
         producer.send(dataRecord("john", String.format("First=%s, Last=%s, Email=%s", "johnny", "doe", "johnny.doe@gmail.com"))).get();
         producer.send(purchaseRecord("john", "Oranges (3)")).get();
+
+        Thread.sleep(10000);
     }
 
     private static ProducerRecord<String, String> purchaseRecord(String key, String value) {
