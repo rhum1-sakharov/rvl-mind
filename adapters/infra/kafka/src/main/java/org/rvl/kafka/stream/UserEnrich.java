@@ -22,7 +22,7 @@ public class UserEnrich {
 
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, String> userPurchaseStream = builder.stream("aks.user-purchase.event");
-        GlobalKTable<String, String> userDataTable = builder.globalTable("aks.user-data.event");
+        GlobalKTable<String, String> userDataTable = builder.globalTable("aks.user-data.snapshot");
 
         // inner join
         KStream<String, String> userEnrichedInner = userPurchaseStream.join(userDataTable,
