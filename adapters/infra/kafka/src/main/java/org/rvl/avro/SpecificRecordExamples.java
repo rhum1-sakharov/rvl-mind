@@ -49,6 +49,7 @@ public class SpecificRecordExamples {
         Customer readCustomer = dataFileReader.next();
         System.out.println(readCustomer.toString());
         System.out.println("First name: " + readCustomer.getFirstName());
+        System.out.println("Height: " + readCustomer.getHeight());
       }
     } catch (IOException e) {
       e.printStackTrace();
