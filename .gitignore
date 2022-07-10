@@ -31,3 +31,4 @@ build
 gradle
 
 customer-generic.avro
+customer-specific.avro
