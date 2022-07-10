@@ -33,3 +33,10 @@ java {
     languageVersion = JavaLanguageVersion.of(8)
   }
 }
+
+avro {
+  createSetters = false
+  enableDecimalLogicalType = false
+  stringType = "String"
+  fieldVisibility = "PRIVATE"
+}
