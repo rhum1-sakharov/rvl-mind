@@ -5,16 +5,16 @@ plugins {
 apply plugin: 'idea'
 
 dependencies {
-    implementation (libs.kafka.streams)
-    implementation (libs.slf4j.api)
-    implementation (libs.slf4j.simple)
-
-    testImplementation (libs.junit.jupiter)
-    testImplementation (libs.assertj.core)
-    testImplementation (libs.testcontainers.core)
-    testImplementation (libs.testcontainers.kafka)
-    testImplementation (libs.slf4j.api)
-    testImplementation (libs.slf4j.simple)
+    implementation(libs.kafka.streams)
+    implementation(libs.slf4j.api)
+    implementation(libs.slf4j.simple)
+    
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.testcontainers.core)
+    testImplementation(libs.testcontainers.kafka)
+    testImplementation(libs.slf4j.api)
+    testImplementation(libs.slf4j.simple)
 }
 
 test {
