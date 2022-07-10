@@ -1,32 +1,35 @@
 plugins {
-    id 'java'
+  id 'java'
+  id 'com.github.davidmc24.gradle.plugin.avro' version '1.2.1'
 }
 
 apply plugin: 'idea'
 
 dependencies {
-    implementation(libs.kafka.streams)
-    implementation(libs.slf4j.api)
-    implementation(libs.slf4j.simple)
-    
-    testImplementation(libs.junit.jupiter)
-    testImplementation(libs.assertj.core)
-    testImplementation(libs.testcontainers.core)
-    testImplementation(libs.testcontainers.kafka)
-    testImplementation(libs.slf4j.api)
-    testImplementation(libs.slf4j.simple)
+  implementation(libs.kafka.streams)
+  implementation(libs.slf4j.api)
+  implementation(libs.slf4j.simple)
+  implementation 'org.apache.avro:avro:1.11.0'
+
+  testImplementation(libs.junit.jupiter)
+  testImplementation(libs.assertj.core)
+  testImplementation(libs.testcontainers.core)
+  testImplementation(libs.testcontainers.kafka)
+  testImplementation(libs.slf4j.api)
+  testImplementation(libs.slf4j.simple)
 }
 
 test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
 repositories {
-    mavenCentral()
+  gradlePluginPortal()
+  mavenCentral()
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
-    }
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(8)
+  }
 }
