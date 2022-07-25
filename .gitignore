@@ -30,5 +30,7 @@ build
 .gradle
 gradle
 
+target
+
 customer-generic.avro
 customer-specific.avro
