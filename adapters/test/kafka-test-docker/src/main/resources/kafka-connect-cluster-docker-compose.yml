@@ -1,0 +1,44 @@
+---
+version: '2'
+services:
+
+  zookeeper:
+    image: "${ZOOKEEPER_DOCKER_IMAGE}"
+    hostname: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: "${KAFKA_DOCKER_IMAGE}"
+    hostname: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "${KAFKA_BROKER_PORT}:${KAFKA_BROKER_PORT}"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092,PLAINTEXT_HOST://${TEST_CONTAINER_HOST}:${KAFKA_BROKER_PORT}
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_NUM_PARTITIONS: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'false'
+      KAFKA_METADATA_MAX_AGE_MS: 200
+      KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS: 60000
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+
+  schema-registry:
+    image: "${SCHEMA_REGISTRY_DOCKER_IMAGE}"
+    hostname: schema-registry
+    depends_on:
+      - zookeeper
+      - broker
+    ports:
+      - "${SCHEMA_REGISTRY_PORT}:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'

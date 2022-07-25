@@ -27,4 +27,6 @@ dependencyResolutionManagement {
     }
 }
 include 'algorithms'
+include 'adapters:test:kafka-test-docker'
+findProject(':adapters:test:kafka-test-docker')?.name = 'kafka-test-docker'
 
